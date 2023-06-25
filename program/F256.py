@@ -4,6 +4,7 @@ ideal = PolynomialF2([True, False, True, True, True, False, False, False, True])
 
 
 class F256:
+    """Element de F256 (immuable)"""
     position = 0
     polynomial = PolynomialF2([])
 
@@ -105,6 +106,7 @@ def get_reverse_binary_from_byte(byte):
 
 
 def generate_elements():
+    """Permet de générer les éléments de F256"""
     for i in range(256):
         pol = PolynomialF2(get_reverse_binary_from_byte(i))
         hash_code = pol.__hash__()
@@ -113,6 +115,7 @@ def generate_elements():
 
 
 def generate_inverses():
+    """Permet de générer tous les inverses de F256"""
     unit = get_unit()
     for i in range(256):
         for j in range(256):
@@ -122,6 +125,7 @@ def generate_inverses():
 
 
 def generate_alpha_powers():
+    """Permet de calculer toutes les puissances de alpha dans F256"""
     alpha = get_alpha()
     calcul = get_unit()
     for i in range(255):
@@ -131,34 +135,42 @@ def generate_alpha_powers():
 
 
 def get_element(index):
+    """Renvoie l'élément indexé par index"""
     return elements[index]
 
 
 def get_element_with_polynomial(p):
+    """Renvoie l'élément associé au polynome p"""
     return elements[p.__hash__()]
 
 
 def get_unit():
+    """Renvoie l'élément unitaire (neutre par multiplication) de F256"""
     return get_element_with_polynomial(PolynomialF2([True]))
 
 
 def get_alpha():
+    """Renvoie alpha"""
     return get_element_with_polynomial(PolynomialF2([False, True]))
 
 
 def get_zero():
+    """Renvoie le nul (neutre de l'addition)"""
     return get_element_with_polynomial(PolynomialF2([False]))
 
 
 def get_inverse(f256):
+    """Renvoie l'inverse d'un élément"""
     return inverses[f256]
 
 
 def get_alpha_power(f256):
+    """Renvoie la puissance d'alpha d'un élément"""
     return alpha_powers[f256]
 
 
 def get_element_from_alpha_power(power):
+    """Renvoie l'élément depuis une puissance d'alpha"""
     return element_from_alpha_powers[power]
 
 

@@ -14,6 +14,7 @@ def get_generator():
 
 
 def get_x_2t():
+    """Renvoie le polynome 1 * x^2t"""
     poly = PolynomialF256([get_zero()])
     poly.set_coeff(2 * t, get_unit())
     return poly

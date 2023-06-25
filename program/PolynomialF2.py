@@ -1,38 +1,39 @@
 class PolynomialF2:
-    "Polynome à coefficient dans le corps fini F2"
-    "Les éléments de F2 sont représentés par des booléens."
-    "L'addition est le xOR, la multiplication est le AND"
+    """Polynome à coefficient dans le corps fini F2\n
+    Les éléments de F2 sont représentés par des booléens.\n
+    L'addition est le xOR, la multiplication est le AND"""
     coeffs = []
 
     def __init__(self, coeffs):
         self.coeffs = coeffs
 
     def set_coeff(self, index, coeff):
-        "Modifie le coefficient d'indice index"
+        """Modifie le coefficient d'indice index"""
         while len(self.coeffs) <= index:
             self.coeffs.append(False)
         self.coeffs[index] = coeff
 
     def simplify(self):
-        "Simplifie l'expression du polynome en retirant tous les coeffs inutiles de la liste"
+        """Simplifie l'expression du polynome en retirant tous les coeffs inutiles de la liste"""
         if len(self.coeffs) > 0 and not self.coeffs[len(self.coeffs) - 1]:
             self.coeffs.pop()
             self.simplify()
 
     def get_coeff(self, index):
-        "Renvoie le coefficient d'indice index"
+        """Renvoie le coefficient d'indice index"""
         return self.coeffs[index] if index < len(self.coeffs) else False
 
     def get_degree(self):
-        "Renvoie le degré du polynome"
+        """Renvoie le degré du polynome"""
         self.simplify()
         return len(self.coeffs) - 1
 
     def get_coeff_dominant(self):
+        """Renvoie le coefficient dominant du polynome"""
         return self.coeffs[self.get_degree()]
 
     def multiply(self, p2):
-        "Renvoie le résultat de la multiplication par p2"
+        """Renvoie le résultat de la multiplication par p2"""
         ret = PolynomialF2([])
         for k in range(self.get_degree() + p2.get_degree() + 1):
             somme = False
@@ -42,23 +43,23 @@ class PolynomialF2:
         return ret
 
     def substract(self, p2):
-        "Renvoie le résultat de la soustraction par p2"
+        """Renvoie le résultat de la soustraction par p2"""
         ret = PolynomialF2([])
         for i in range(max(self.get_degree(), p2.get_degree()) + 1):
             ret.set_coeff(i, self.get_coeff(i) != p2.get_coeff(i))
         return ret
 
     def add(self, p2):
-        "Renvoie le résultat de l'ajout de p2"
+        """Renvoie le résultat de l'ajout de p2"""
         ret = PolynomialF2([])
         for i in range(max(self.get_degree(), p2.get_degree()) + 1):
             ret.set_coeff(i, self.get_coeff(i) != p2.get_coeff(i))
         return ret
 
     def euclidian_division(self, p2):
-        "Renvoie le tuple :"
-        "Quotient de la division euclidienne du polymome par p2"
-        "Reste de la division euclidienne du polynome par p2"
+        """Renvoie le tuple :\n
+        Quotient de la division euclidienne du polymome par p2\n
+        Reste de la division euclidienne du polynome par p2"""
         quotient = PolynomialF2([])
         reste = self.clone()
 
@@ -77,9 +78,11 @@ class PolynomialF2:
         return quotient, reste
 
     def euclidian_multiplication(self, p2, modulo):
+        """Renvoie le résultat de la multiplication par p2 modulo un certain polynome"""
         return self.multiply(p2).euclidian_division(modulo)
 
     def clone(self):
+        """Renvoie une copie du polynome"""
         return PolynomialF2(self.coeffs.copy())
 
     def __hash__(self):
@@ -97,6 +100,7 @@ class PolynomialF2:
         return string
 
     def equal(self, p2):
+        """Renvoie si les deux polynomes sont égaux"""
         if p2.get_degree() != self.get_degree():
             return False
 

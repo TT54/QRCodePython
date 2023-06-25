@@ -4,6 +4,7 @@ from ReedSolomon import *
 
 
 def show_image(m, file_name, zoom=1):
+    """Affiche et enregistre l'image"""
     x = 255 * np.asarray(m, dtype=np.uint8)
     im = Image.fromarray(x)
     if zoom > 1:
@@ -148,6 +149,7 @@ def generate_qr_code(text, file_name="D:\\Theo\\Cours\\Tipe\\Maths\\image.png"):
 
 
 def read_qr_code(image_path):
+    """Renvoie la chaine de caractère contenue dans un QR-Code généré par ce programme"""
     matrix = np.array(Image.open(image_path).convert('1').resize((21,21)),dtype='uint8').tolist()
     l = len(matrix)
     datas = [0] * 26 * 8

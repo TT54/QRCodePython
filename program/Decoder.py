@@ -11,9 +11,9 @@ def get_syndrome(polynomialF256):
 
 
 def get_bezout(poly1, poly2):
-    """Effectue l'algorithme d'Euclide étendu pour obtenir une relation de Bézout de la forme"""
-    """a * poly1 + b * poly2 = c"""
-    """Renvoie alors le triplet (a, b, c)"""
+    """Effectue l'algorithme d'Euclide étendu pour obtenir une relation de Bézout de la forme\n
+    a * poly1 + b * poly2 = c\n
+    Renvoie alors le triplet (a, b, c)"""
 
     r0, r1 = poly2, poly1
     u0, u1 = PolynomialF256([get_unit()]), PolynomialF256([get_zero()])
