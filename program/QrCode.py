@@ -14,11 +14,6 @@ def show_image(m, file_name, zoom=1):
     im.save(file_name)
 
 
-def taille(m):
-    """ Renvoie le tuple longueur, largeur de l'image m"""
-    return len(m[0]), len(m)
-
-
 def image_nb_vide(w,h):
     """ Renvoie une image vide NB (noire) de taille w x h"""
     m = []
@@ -43,14 +38,6 @@ def string_to_bytes_list(input):
     return encoded
 
 
-def get_code_with_infos(to_encode):
-    """Rajoute à la liste d'entiers à encoder sa taille en premier élément"""
-    result = [len(to_encode)]
-    for i in to_encode:
-        result.append(i)
-    return result
-
-
 def bytes_to_binary_array(data):
     """Renvoie à partir de la liste d'octets une liste de bits (booleans) qui les représentent"""
     bits = []
@@ -69,6 +56,7 @@ def get_binary_from_byte(byte):
         range -= 1
         byte = byte // 2
     return converted
+
 
 def binary_to_bytes_array(data):
     """Renvoie une liste d'octets à partir d'une liste de bits"""
