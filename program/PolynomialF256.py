@@ -6,6 +6,7 @@ class PolynomialF256:
     coeffs = []
 
     def __init__(self, coeffs):
+        """Initialisation du polynome à partir d'une liste d'éléments de F256"""
         self.coeffs = coeffs
 
     def set_coeff(self, index, f256):

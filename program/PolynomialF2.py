@@ -5,6 +5,7 @@ class PolynomialF2:
     coeffs = []
 
     def __init__(self, coeffs):
+        """Initialisation du polynome à partir d'une liste de booléens"""
         self.coeffs = coeffs
 
     def set_coeff(self, index, coeff):

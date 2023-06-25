@@ -9,6 +9,8 @@ class F256:
     polynomial = PolynomialF2([])
 
     def __init__(self, position, polynomial):
+        """Initialisation d'un élément de F256 avec son indice et son polynome dans F2[X] associé\n
+        Attention : Ce constructeur ne doit pas être utilisé en dehors de cette classe !"""
         self.polynomial = polynomial
         self.position = position
 
