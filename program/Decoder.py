@@ -29,7 +29,7 @@ def get_bezout(poly1, poly2):
     return v1, u1, r1
 
 
-def correction(polynomialF256):
+def get_correction(polynomialF256):
     """Renvoie le polynôme corrigé obtenu à partir de polynomialF256"""
     syndrome = get_syndrome(polynomialF256)
 

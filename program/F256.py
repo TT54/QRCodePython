@@ -92,9 +92,21 @@ element_from_alpha_powers = {}
 elements = [None for i in range(256)]
 
 
+def get_reverse_binary_from_byte(byte):
+    """Renvoie une liste de bits (booleans) associés à un octet"""
+    converted = [False] * 8
+    range = 0
+    while byte >= 1:
+        r = byte % 2
+        converted[range] = r == 1
+        range += 1
+        byte = byte // 2
+    return converted
+
+
 def generate_elements():
     for i in range(256):
-        pol = PolynomialF2([i % 2 == 0, i % 4 < 2, i % 8 < 4, i % 16 < 8, i % 32 < 16, i % 64 < 32, i % 128 < 64, i % 256 < 128])
+        pol = PolynomialF2(get_reverse_binary_from_byte(i))
         hash_code = pol.__hash__()
         f256 = F256(hash_code, pol)
         elements[hash_code] = f256
