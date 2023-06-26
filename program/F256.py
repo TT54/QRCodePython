@@ -86,7 +86,6 @@ class F256:
         return "0" if string == "" else string
 
 
-
 elements_poly = {}
 inverses = {}
 alpha_powers = {}
@@ -177,7 +176,5 @@ def get_element_from_alpha_power(power):
 
 
 generate_elements()
-print("starting inverses")
 generate_inverses()
-print("end inverses")
 generate_alpha_powers()
